@@ -35,6 +35,7 @@ public class Menu extends MouseAdapter {
             if(mouseOver(mx, my, 250, 340, 130, 30))
             {
                 game.gameState = Game.STATE.Menu;
+                return;
             }
         }
     }
