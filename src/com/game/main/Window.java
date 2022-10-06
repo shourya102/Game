@@ -13,6 +13,8 @@ public class Window extends Canvas {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
+        Image icon = Toolkit.getDefaultToolkit().getImage("D:\\Game\\src\\com\\game\\main\\icon.png");
+        frame.setIconImage(icon);
         frame.setVisible(true);
         frame.add(game);
         game.start();

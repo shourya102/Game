@@ -22,18 +22,19 @@ public class Menu extends MouseAdapter {
     public void mousePressed(MouseEvent e) {
         int mx = e.getX();
         int my = e.getY();
-        if(mouseOver(mx, my, 250, 200, 130, 30))
-        {
-            game.gameState = Game.STATE.Game;
-            handler.addObject(new Player(Game.WIDTH/2 - 32, Game.HEIGHT/2 - 32, ID.Player, handler));
-            handler.addObject(new Enemy(random.nextInt(Game.WIDTH), random.nextInt(Game.HEIGHT), ID.Enemy, handler));
-        } else if (mouseOver(mx, my, 250, 240, 130, 30)) {
-            game.gameState = Game.STATE.Help;
-        } else if(mouseOver(mx, my, 250, 280, 130, 30)) {
-            System.exit(1);
-        } else if (game.gameState == Game.STATE.Help) {
-            if(mouseOver(mx, my, 250, 340, 130, 30))
-            {
+        if(game.gameState == Game.STATE.Menu) {
+            if (mouseOver(mx, my, 250, 200, 130, 30)) {
+                game.gameState = Game.STATE.Game;
+                handler.addObject(new Player(Game.WIDTH / 2 - 32, Game.HEIGHT / 2 - 32, ID.Player, handler));
+                handler.addObject(new Enemy(random.nextInt(Game.WIDTH), random.nextInt(Game.HEIGHT), ID.Enemy, handler));
+            } else if (mouseOver(mx, my, 250, 240, 130, 30)) {
+                game.gameState = Game.STATE.Help;
+            } else if (mouseOver(mx, my, 250, 280, 130, 30)) {
+                System.exit(1);
+            }
+        }
+        else if (game.gameState == Game.STATE.Help) {
+            if (mouseOver(mx, my, 250, 340, 130, 30)) {
                 game.gameState = Game.STATE.Menu;
                 return;
             }
@@ -107,6 +108,15 @@ public class Menu extends MouseAdapter {
 
             graphics.drawString("Back", 295, 360);
             graphics.drawRect(250, 340, 130, 30);
+        }
+        else if(game.gameState == Game.STATE.GameOver)
+        {
+            Font font = new Font("arial", Font.ITALIC, 50);
+            graphics.setFont(font);
+            graphics.setColor(Color.white);
+            graphics.drawRect(50, 50, 528, 340);
+            graphics.setColor(Color.red);
+            graphics.drawString("Game Over!!!", 160, 235);
         }
     }
 }
